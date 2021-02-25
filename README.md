@@ -1,7 +1,7 @@
 # group-6
 API Lab Repo for Prototyping @ MAU
-Explaining the project:
-## What the project does
+## Plant as Proxy
+An experimentation with plants as a stand-in for other humans.
 
 ## Describe your project
 
