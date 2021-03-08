@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Socket.io Demo</title>
+      <meta charset="utf-8">
+		<link rel="stylesheet" href="styles.css">
+   </head>
+   <body>
+		 <h1>Socket.io Demo</h1>	 
+       <p id="buttonCount">The button has 1000 clicks left.</p>
+		 <button onclick="buttonClicked()">Click me</button>
+       <script src="/socket.io/socket.io.js"></script> 
+		 <script>
+			 var socket = io.connect();
+			 
+			 function buttonClicked(){
+			   socket.emit('clicked');
+			 }
+			 
+//when a button update is received it will be shown on the canvas
+			 socket.on('buttonUpdate', function(data){
+				 document.getElementById("buttonCount").innerHTML = 'The button has ' + data + ' clicks left.';
+			 });
+		</script>
+   </body>
+</html>
+
