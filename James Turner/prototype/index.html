@@ -11,18 +11,32 @@
                 </button> 
         </div>
         <script>
+            //var five = require('johnny-five');
+            //const board = new Board();
             var socket = io();
             var heldDown = false;
     document.getElementById("button").ontouchstart = function(event) {
     //fires when touched
     heldDown = true,
-    socket.emit(heldDown.valueOf);
+    socket.broadcast.emit(heldDown.valueOf);
 }
     document.getElementById("button").ontouchend = function(event) {
     //fires when released
-    helDown = false,
-    socket.emit(heldDown.valueOf);
+    heldDown = false,
+    socket.broadcast.emit(heldDown.valueOf);
 }
+    // board.on("ready", () => {
+    // Create a standard `led` component
+    // on a valid pwm pin
+   // const led = new Led(11);
+
+if (heldDown = true) {
+    //led.pulse(),
+    console.log("button held down");
+} else {
+    //led.stop().off(),
+    console.log("button not held down");
+};
         </script>
     </body>
 </html>
