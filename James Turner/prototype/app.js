@@ -3,6 +3,7 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 //var five = require('johnny-five');
 //const board = new Board();
+var heldDown = false;
 
 
 app.get('/', (req, res) => {
@@ -34,6 +35,9 @@ if (heldDown = true) {
   
       // stop() terminates the interval
       // off() shuts the led off
+     // led.stop().off();
+   // });
+ // });
      // led.stop().off();
    // });
  // });
