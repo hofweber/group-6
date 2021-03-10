@@ -13,9 +13,8 @@
 var socket = io.connect('http://localhost:3000');
 var audio = new Audio('test.mp3')
 
-			 function buttonClicked(){
-			   socket.emit('clicked');
-			 }
+var long = document.getElementById('first');
+var second = document.getElementById('second');
 
 //when a button update is received it will be shown on the canvas
 			 socket.on('buttonUpdate', function(data){
