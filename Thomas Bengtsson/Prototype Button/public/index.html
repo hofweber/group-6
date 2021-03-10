@@ -9,8 +9,9 @@
 	<button id='first'>First Button</button>
 	<button id='second'>Second Button</button>
        	<script src="/socket.io/socket.io.js"></script> 
-		 <script>
-			 var socket = io.connect();
+<script>
+var socket = io.connect('http://localhost:3000');
+var audio = new Audio('test.mp3')
 
 			 function buttonClicked(){
 			   socket.emit('clicked');
