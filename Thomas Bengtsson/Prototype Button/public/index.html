@@ -25,6 +25,15 @@ console.log('hello')
 	audio.play();
 });
 
+second.addEventListener('click', function() {
+socket.emit('second', socket.id);
+})
+
+socket.on('second', function(data) {
+console.log('hello');
+audio.play();
+})	
+
 	</script>
 </body>
 </html>
