@@ -16,7 +16,15 @@ var audio = new Audio('test.mp3')
 var long = document.getElementById('first');
 var second = document.getElementById('second');
 
+long.addEventListener('click', function() {
+socket.emit('first', socket.id);
+});
 
-		</script>
-   </body>
+socket.on('first', function(data) {
+console.log('hello')
+	audio.play();
+});
+
+	</script>
+</body>
 </html>
