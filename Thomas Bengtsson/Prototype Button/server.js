@@ -1,9 +1,11 @@
-// part of setting up the server
-var express = require('express');  
-var app = express();  
-var server = require('http').createServer(app);
-//makes the socket.io package available via the io variable
-var io = require('socket.io')(server); 
+var express = require('express');
+var socket = require('socket.io');
+var app = express();
+var server = app.listen(3000, function() {
+console.log("Listening to requests on port 3000")
+});
+
+var io = socket(server);
 
 //keeps count the number of clicks the button has left. Starts att 50 clicks
 var clickCount = 1000;
