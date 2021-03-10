@@ -20,13 +20,13 @@ board.on("ready", () => {
 
 socket.on("buttonDown", () => {
   console.log("someone pressed the button");
-  //led pulse 
+  led.pulse(); 
   socket.emit("startLed");
 });
 
 socket.on("buttonUp", () => {
   console.log("someone released the button");
-  //led stop
+  led.stop().off();
   socket.emit("stopLed");
 });
 
