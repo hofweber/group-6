@@ -103,14 +103,14 @@
     canvas.height = window.innerHeight;
   }
 
-  var x = document.getElementById("audio"); 
-
-  function playAudio() { 
-  x.play(); 
-  } 
-
-  function pauseAudio() { 
-  x.pause(); 
-  } 
-
 })();
+
+var x = document.getElementById("audio"); 
+
+function playAudio() {
+x.play(); 
+}
+function pauseAudio() { 
+x.pause(); 
+} 
+
