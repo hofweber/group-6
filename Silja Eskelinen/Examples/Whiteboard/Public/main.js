@@ -12,21 +12,16 @@
   };
   var drawing = false;
 
+  //Add event listeners to mouse functions
   canvas.addEventListener('mousedown', onMouseDown, false);
   canvas.addEventListener('mouseup', onMouseUp, false);
   canvas.addEventListener('mouseout', onMouseUp, false);
   canvas.addEventListener('mousemove', throttle(onMouseMove, 10), false);
-  
-  //Touch support for mobile devices
-  canvas.addEventListener('touchstart', onMouseDown, false);
-  canvas.addEventListener('touchend', onMouseUp, false);
-  canvas.addEventListener('touchcancel', onMouseUp, false);
-  canvas.addEventListener('touchmove', throttle(onMouseMove, 10), false);
 
   for (var i = 0; i < colors.length; i++){
     colors[i].addEventListener('click', onColorUpdate, false);
   }
-
+  
   socket.on('drawing', onDrawingEvent);
 
   window.addEventListener('resize', onResize, false);
@@ -105,12 +100,21 @@
 
 })();
 
-var x = document.getElementById("audio"); 
+//Create Array with the audios
+var audios = new Array(document.getElementById("audio0"), document.getElementById("audio1"), document.getElementById("audio2"), document.getElementById("audio3"));
+var audio 
 
+//Function to select and play random audio from the Array
 function playAudio() {
-x.play(); 
+var randomInt = Math.floor(Math.random() * Math.floor(4));
+audio = audios[randomInt];
+audio.play(); 
 }
+
+//Pause audio play
 function pauseAudio() { 
-x.pause(); 
+audio.pause(); 
 } 
+
+
 
