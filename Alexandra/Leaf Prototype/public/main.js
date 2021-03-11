@@ -12,6 +12,8 @@
   };
   var drawing = false;
 
+  drawLeaf();
+
   function drawLeaf() {
     var ctx = canvas.getContext('2d');
     var x,y;
@@ -41,23 +43,8 @@
   }
   
   
-
-  //making some variables for the HSL slider values and accessing them by their id in the index.html file
-
   
 
-  canvas.addEventListener('mousedown', onMouseDown, false);
-  canvas.addEventListener('mouseup', onMouseUp, false);
-  canvas.addEventListener('mouseout', onMouseUp, false);
-  canvas.addEventListener('mousemove', throttle(onMouseMove, 10), false);
-  
-  //Touch support for mobile devices
-  canvas.addEventListener('touchstart', onMouseDown, false);
-  canvas.addEventListener('touchend', onMouseUp, false);
-  canvas.addEventListener('touchcancel', onMouseUp, false);
-  canvas.addEventListener('touchmove', throttle(onMouseMove, 10), false);
-
-  
 
 
   socket.on('drawing', onDrawingEvent);
@@ -89,7 +76,7 @@
   }
 
   function onMouseDown(e){
-    drawLeaf();
+    
     drawing = true;
     current.x = e.clientX||e.touches[0].clientX;
     current.y = e.clientY||e.touches[0].clientY;
