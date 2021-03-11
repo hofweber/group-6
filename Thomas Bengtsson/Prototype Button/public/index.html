@@ -1,39 +1,37 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <title>Socket.io Demo</title>
-      <meta charset="utf-8">
-		<link rel="stylesheet" href="styles.css">
-   </head>
-   <body>
-	<button id='first'>First Button</button>
-	<button id='second'>Second Button</button>
-       	<script src="/socket.io/socket.io.js"></script> 
-<script>
-var socket = io.connect('http://localhost:3000');
-var audio = new Audio('test.mp3')
+  <head>
+    <title>Socket.io Demo</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <button id="first">Play</button>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js"></script>
 
-var long = document.getElementById('first');
-var second = document.getElementById('second');
+    <script>
+      var socket = io.connect("http://localhost:3000");
 
-long.addEventListener('click', function() {
-socket.emit('first', socket.id);
-});
+      //fetches the mp3
+      var audio = new Howl({
+        src: [
+          "https://cdn.glitch.com/533fdac0-87b6-41a5-9342-0ee5913c6263%2FStereo-Rain-And-Wind-A-www.fesliyanstudios.com-%5BAudioTrimmer.com%5D.mp3?v=1615498112923",
+        ],
+      });
 
-socket.on('first', function(data) {
-console.log('hello')
-	audio.play();
-});
+      //creates an addEventListener
+      var long = document.getElementById("first");
 
-second.addEventListener('click', function() {
-socket.emit('second', socket.id);
-})
+      //listening for a button click
+      long.addEventListener("click", function () {
+        socket.emit("first", socket.id);
+      });
 
-socket.on('second', function(data) {
-console.log('hello');
-audio.play();
-})	
-
-	</script>
-</body>
+      //tells all the clients to start playing music
+      socket.on("first", function (data) {
+        socket.emit(audio.play());
+      });
+    </script>
+  </body>
 </html>
