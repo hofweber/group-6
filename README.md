@@ -23,3 +23,4 @@ Run the local server files using node in your terminal.
 
 ## Contributors:
 Alexandra Raducanu, James Turner, Silja Eskelinen, Thomas Bengtsson
+  with a lot of help from Peter and Taner! Thank you!
