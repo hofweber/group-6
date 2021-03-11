@@ -12,6 +12,14 @@
   };
   var drawing = false;
 
+  socket.on('drawing', onDrawingEvent);
+
+  function onDrawingEvent(data){
+    
+    drawLeaf(data.color);
+    
+  }
+
   function drawLeaf(color) {
     var ctx = canvas.getContext('2d');
     var x,y
@@ -46,7 +54,7 @@
     drawLeaf('lightgreen');
    }, 600);
 
-  socket.on('drawing', onDrawingEvent);
+
 
   window.addEventListener('resize', onResize, false);
   onResize();
@@ -63,7 +71,13 @@
     drawing = true;
     current.x = e.clientX||e.touches[0].clientX;
     current.y = e.clientY||e.touches[0].clientY;
+
+    socket.emit('drawing', {
+      color: 'red'
+    });
   }
+
+
 
   function onMouseUp(e){
     if (!drawing) { return; }
@@ -83,6 +97,8 @@
       }
     };
   }
+
+
 
   function onDrawingEvent(data){
     var w = canvas.width;
