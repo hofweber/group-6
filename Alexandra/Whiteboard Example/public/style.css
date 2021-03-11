@@ -38,15 +38,15 @@ html, body {
 
 /* trying to map out the color selection on the sliders by adding a gradient background */
 .slider {
-  -webkit-appearance: none;  /* Override default CSS styles */
+  -webkit-appearance: none;  
   appearance: none;
   border-radius: 15px;
   background: -webkit-linear-gradient(20deg, red, yellow, green, blue, red 100%);
-  width: 50%; /* Full-width */
-  height: 25px; /* Specified height */
-  outline: none; /* Remove outline */
-  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  width: 50%; 
+  height: 25px; 
+  outline: none; 
+  opacity: 0.7; 
+  -webkit-transition: .2s; 
   transition: opacity .2s;
 }
 
