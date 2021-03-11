@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Socket.IO whiteboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <canvas class="whiteboard" ></canvas>
+
+<!--Taking out the colored squaresin order to change it from preset colors only to more options.-->
+
+  <!-- <div class="colors">
+    <div class="color black"></div>
+    <div class="color red"></div>
+    <div class="color green"></div>
+    <div class="color blue"></div>
+    <div class="color yellow"></div>
+  </div> -->
+
+
+  <!-- Making an HSL color selector -->
+
+  <div class="slidecontainer">
+    <!-- The first slider has a value range  from 1 till 360 because that's how colors are represented in a Hue chart.-->
+    <input type="range" min="1" max="360" value="50" class="slider" id="Hue">
+    <!-- The next 2 sliders have values from 1 to 100, for saturation and luminosity, since its a percentage -->
+    <input type="range" min="1" max="100" value="50" class="slider" id="Saturation">
+    <input type="range" min="1" max="100" value="50" class="slider" id="Luminosity">
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="colorUtil.js"></script>
+  <script src="/main.js"></script>
+</body>
+</html>
