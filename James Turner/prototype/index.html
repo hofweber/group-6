@@ -14,12 +14,12 @@
     </div>
     <script>
         var socket = io();
-        document.getElementById("button").onmousedown = function (event) {
+        document.getElementById("button").ontouchstart = function (event) {
             //fires when touched
             console.log("button held down");
             socket.emit('buttonDown');
         }
-        document.getElementById("button").onmouseup = function (event) {
+        document.getElementById("button").ontouchend = function (event) {
             //fires when released
             console.log("button not held down anymore");
             socket.emit("buttonUp");
