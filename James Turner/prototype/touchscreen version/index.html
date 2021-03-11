@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Jamie Prototype</title>
+</head>
+
+<body>
+    <script src="/socket.io/socket.io.js"></script>
+    <div id="button">
+        <button style="background-color: red; height: 500px; width: 500px;" type="button">
+            Hold Down
+        </button>
+    </div>
+    <script>
+        var socket = io();
+        document.getElementById("button").ontouchstart = function (event) {
+            //fires when touched
+            console.log("button held down");
+            socket.emit('buttonDown');
+        }
+        document.getElementById("button").ontouchend = function (event) {
+            //fires when released
+            console.log("button not held down anymore");
+            socket.emit("buttonUp");
+        }
+
+    </script>
+</body>
+
+</html>
