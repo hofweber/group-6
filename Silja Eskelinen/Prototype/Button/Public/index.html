@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Socket.io Demo</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="changeColor">
+      <p>Press here to change color</p>
+    </div>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.1/chroma.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pressure/2.2.0/pressure.min.js"></script>
+    <script>
+      const socket = io.connect("http://localhost:5000");
+
+      const changeColor = document.getElementById("changeColor");
+
+      changeColor.addEventListener("click", function () {
+        socket.emit("changeColor", socket.id);
+      });
+
+      socket.on("changeColor", function (data) {
+        console.log("hello");
+
+        let el = document.getElementById("changeColor");
+
+        let scale = chroma.scale(["yellow", "pink", "purple"]);
+
+
+        Pressure.set("#changeColor", {
+          change: function (force) {
+            el.style.backgroundColor = scale(force);
+            el.innerHTML = force;
+
+            console.log("hih");
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
