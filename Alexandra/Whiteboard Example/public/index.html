@@ -25,7 +25,9 @@
   <div class="slidecontainer">
     <!-- The first slider has a value range  from 1 till 360 because that's how colors are represented in a Hue chart.-->
     <input type="range" min="1" max="360" value="50" class="slider" id="Hue">
-
+    <!-- The next 2 sliders have values from 1 to 100, for saturation and luminosity, since its a percentage -->
+    <input type="range" min="1" max="100" value="50" class="slider" id="Saturation">
+    <input type="range" min="1" max="100" value="50" class="slider" id="Luminosity">
   </div>
 
   <script src="/socket.io/socket.io.js"></script>
