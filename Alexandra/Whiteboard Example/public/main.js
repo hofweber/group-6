@@ -12,6 +12,13 @@
   };
   var drawing = false;
 
+  //making some variables for the HSL slider values and accessing them by their id in the index.html file
+
+  var sliderHue = document.getElementById("Hue");
+  var sliderSaturation = document.getElementById("Saturation");
+  var sliderLuminosity = document.getElementById("Luminosity");
+
+
   canvas.addEventListener('mousedown', onMouseDown, false);
   canvas.addEventListener('mouseup', onMouseUp, false);
   canvas.addEventListener('mouseout', onMouseUp, false);
