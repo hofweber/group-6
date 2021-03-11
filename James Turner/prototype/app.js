@@ -21,7 +21,7 @@ board.on("ready", () => {
 
   socket.on("buttonDown", () => {
     console.log("someone pressed the button");
-    led.pulse();
+    led.blink();
     socket.emit("startLed");
   });
 
@@ -31,4 +31,3 @@ board.on("ready", () => {
     socket.emit("stopLed");
   });
 });
-
