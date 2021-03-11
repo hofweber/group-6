@@ -1,41 +1,56 @@
 <!DOCTYPE html>
 <html>
-   <head>
+  <head>
       <title>Socket.io Demo</title>
       <meta charset="utf-8">
 		<link rel="stylesheet" href="styles.css">
-   </head>
-   <body>
-		 <h1>Socket.io Demo</h1>	 
-		 <p id="buttonCount">The button has been clicked 0 times.</p>
-		 <button onclick="buttonClicked()">Click me</button>
-		 <button onclick="playAudio()" type="button">Play Audio</button>
-		 <button onclick="pauseAudio()" type="button">Pause Audio</button> 
-		 <audio id="audio" src="Bees.mp3"></audio>
-		 <script src="/socket.io/socket.io.js"></script>
-		 <script>
-			 var socket = io.connect();
+  </head>
+  <body>
+	 <h1>Socket.io Demo</h1>	 
+	 <p id="buttonCount">The button has been clicked 0 times.</p>
+	 <div id="changeColor">
+	 	<p>Press here to change color</p>
+	 </div>
+		 
+	 <button onclick="buttonClicked()">Click me</button>
+
+	 <script src="/socket.io/socket.io.js"></script>
+	 <script src="lib/pressure.min.js"></script>
+	 <script src="lib/chroma.min.js"></script>
+	 <script>
+		 var socket = io.connect();
 			 
-			 function buttonClicked(){
-			   socket.emit('clicked');
+		 function buttonClicked(){
+		 socket.emit('clicked');
+		 }
+			 
+		 //when we receive buttonUpdate, do this
+		 socket.on('buttonUpdate', function(data){
+		 document.getElementById("buttonCount").innerHTML = 'The button has been clicked ' + data + ' times.';
+		 });
+
+		 function onDocumentReady() {
+		  let el = document.getElementById('ChangeColor');
+
+			// Chroma, the library we're using makes it super easy to map
+			// a percentage to a colour scale
+		  let scale = chroma.scale(['yellow', 'pink', 'purple']);
+
+			// Listen for pressure changes on the element with id 'target',
+			// Pressurejs has more events than 'change', see dosc for more
+		  Pressure.set('ChangeColor', {
+			 change: function(force) {
+				// Use the scale object to generate a colour based on 0..1.0
+			 el.style.backgroundColor = scale(force);
+			 el.innerHTML = force;
+			 console.log('hih')
 			 }
-			 
-			 //when we receive buttonUpdate, do this
-			 socket.on('buttonUpdate', function(data){
-				 document.getElementById("buttonCount").innerHTML = 'The button has been clicked ' + data + ' times.';
-			 });
-             
-			 //Add audio to the button
-			 var x = document.getElementById("audio"); 
+		 	}); {only: 'mouse'}
+		  }
 
-			 function playAudio() { 
-				x.play(); 
-				} 
-
-			 function pauseAudio() { 
-				x.pause(); 
-				} 
-			</script>
-		</script>
-   </body>
+		 if (document.readyState != 'loading') onDocumentReady();
+		 else document.addEventListener('DOMContentLoaded', onDocumentReady);
+     </script>
+  </body>
 </html>
+
