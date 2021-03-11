@@ -18,7 +18,7 @@
     ctx.beginPath();     // Start a new path.
     ctx.lineWidth = "3";
     ctx.strokeStyle = "green";  // This path is green
-    ctx.fillstyle = "red";
+    ctx.fillStyle = "lightgreen";
     x=150;
     y=150;
     ctx.moveTo(x, y);
@@ -44,7 +44,7 @@
 
   setTimeout(function(){
     drawLeaf();
-   }, 2000);
+   }, 600);
   
   
 
