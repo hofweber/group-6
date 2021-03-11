@@ -19,11 +19,13 @@ io.on("connection", function (client) {
   //when the server receives clicked message, do this
   client.on("clicked1", function (data) {
     clickCount1++;
+    console.log("button 1 " + clickCount1);
     //send a message to ALL connected clients
     io.emit("button1Update", clickCount1);
   });
   client.on("clicked2", function (data) {
     clickCount2++;
+    console.log("button 2 " + clickCount2);
     //send a message to ALL connected clients
     io.emit("button2Update", clickCount2);
   });
@@ -33,4 +35,3 @@ io.on("connection", function (client) {
 server.listen(3000, function () {
   console.log("listening on *:3000");
 });
-
