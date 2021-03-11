@@ -1,0 +1,19 @@
+{
+  "name": "socket.io-button",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "audio-buffer": "^4.0.4",
+    "express": "^4.17.1",
+    "fs-js": "^1.0.6",
+    "socket.io": "^3.1.2",
+    "sound-play": "^1.1.0"
+  },
+  "devDependencies": {},
+  "description": ""
+}
