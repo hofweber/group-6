@@ -1,7 +1,7 @@
 const app = require("express")();
 const http = require("http").Server(app);
 const socket = require("socket.io")(http);
-var five = require("johnny-five");
+
 const {Board, Led} = require("johnny-five");
 
 const board = new Board({ port: "COM3" });
@@ -19,15 +19,17 @@ board.on("ready", () => {
   //on a valid pwm pin
   const led = new Led(11);
 
+socket.on('connection', function(socket){
   socket.on("buttonDown", () => {
     console.log("someone pressed the button");
     led.blink();
     socket.emit("startLed");
-  });
+ }) });
 
+ socket.on('connection', function(socket){
   socket.on("buttonUp", () => {
     console.log("someone released the button");
     led.stop().off();
     socket.emit("stopLed");
-  });
+  }) });
 });
