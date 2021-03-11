@@ -12,14 +12,13 @@
   };
   var drawing = false;
 
-  drawLeaf();
-
   function drawLeaf() {
     var ctx = canvas.getContext('2d');
     var x,y;
     ctx.beginPath();     // Start a new path.
     ctx.lineWidth = "3";
-    ctx.strokeStyle = "green";  // This path is green.
+    ctx.strokeStyle = "green";  // This path is green
+    ctx.fillstyle = "red";
     x=150;
     y=150;
     ctx.moveTo(x, y);
@@ -37,11 +36,15 @@
     ctx.lineTo(x-=50, y-=50);
     
     ctx.stroke();
+    ctx.fill();
     
     console.log('it works');
 
   }
-  
+
+  setTimeout(function(){
+    drawLeaf();
+   }, 2000);
   
   
 
@@ -76,7 +79,7 @@
   }
 
   function onMouseDown(e){
-    
+    drawLeaf();
     drawing = true;
     current.x = e.clientX||e.touches[0].clientX;
     current.y = e.clientY||e.touches[0].clientY;
@@ -93,10 +96,6 @@
     //drawLine(current.x, current.y, e.clientX||e.touches[0].clientX, e.clientY||e.touches[0].clientY, current.color, true);
     current.x = e.clientX||e.touches[0].clientX;
     current.y = e.clientY||e.touches[0].clientY;
-  }
-
-  function onColorUpdate(e){
-    current.color = e.target.className.split(' ')[1];
   }
 
   // limit the number of events per second
