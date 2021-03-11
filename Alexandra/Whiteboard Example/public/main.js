@@ -18,6 +18,30 @@
   var sliderSaturation = document.getElementById("Saturation");
   var sliderLuminosity = document.getElementById("Luminosity");
 
+  var HueValue = 1;
+  var SaturationValue = 100;
+  var LuminosityValue = 50;
+
+
+//creating functions for changing the color through the sliders
+  sliderHue.oninput = function() {
+    HueValue = this.value;
+    current.color = hslToHex(HueValue, SaturationValue, LuminosityValue);
+    console.log(current.color);
+  }
+
+  sliderSaturation.oninput = function() {
+    SaturationValue = this.value;
+    current.color = hslToHex(HueValue, SaturationValue, LuminosityValue);
+    console.log(current.color);
+  }
+
+  sliderLuminosity.oninput = function() {
+    LuminosityValue = this.value;
+    current.color = hslToHex(HueValue, SaturationValue, LuminosityValue);
+    console.log(current.color);
+  }
+  
 
   canvas.addEventListener('mousedown', onMouseDown, false);
   canvas.addEventListener('mouseup', onMouseUp, false);
