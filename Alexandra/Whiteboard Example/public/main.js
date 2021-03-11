@@ -54,9 +54,8 @@
   canvas.addEventListener('touchcancel', onMouseUp, false);
   canvas.addEventListener('touchmove', throttle(onMouseMove, 10), false);
 
-  for (var i = 0; i < colors.length; i++){
-    colors[i].addEventListener('click', onColorUpdate, false);
-  }
+  
+
 
   socket.on('drawing', onDrawingEvent);
 
