@@ -27,13 +27,4 @@ html, body {
   top: 0;
 }
 
-.colors {
-  position: fixed;
-}
-
-.color {
-  display: inline-block;
-  height: 48px;
-  width: 48px;
-}
 
