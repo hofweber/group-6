@@ -8,11 +8,16 @@ My aim is to impliment aspects of our Plant as Proxy project. It can be used to 
 
 Dependencies:
 
-node.js socket.io Johnny-Five express
+node.js
+socket.io
+Johnny-Five
+express
 
 How to use:
 
 npm insall all dependences run the local server with node
+
+upload Standard Firmata Plus to the Arduino board
 
 Source:
 
