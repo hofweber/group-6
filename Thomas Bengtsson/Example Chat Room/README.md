@@ -4,4 +4,6 @@ Why is this useful? This is an example that are good for beginners to learn more
 
 Dependencies: Install Node.js, Socket.io, Express.js
 
+Contributor: Thomas Bengtsson 
+
 Source: This example is based of https://socket.io/get-started/chat#Getting-this-example
