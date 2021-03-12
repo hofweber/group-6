@@ -12,21 +12,26 @@
   };
   var drawing = false;
 
+
+//kept only the mouseup and mousedown 
+  canvas.addEventListener('mousedown', onMouseDown, false);
+  canvas.addEventListener('mouseup', onMouseUp, false);
+
+  canvas.addEventListener('touchstart', onMouseDown, false);
+  canvas.addEventListener('touchend', onMouseUp, false);
+
   socket.on('drawing', onDrawingEvent);
 
-  function onDrawingEvent(data){
-    
-    drawLeaf(data.color);
-    
-  }
+  window.addEventListener('resize', onResize, false);
+  onResize();
+
 
   function drawLeaf(color, emit) {
-    var ctx = canvas.getContext('2d');
-    var x,y
+    var ctx = context;
+    var x,y;
     ctx.beginPath();     // Start a new path.
     ctx.lineWidth = "3";
-    ctx.strokeStyle = "green";  // This path is green
-    ctx.fillStyle = color;
+    ctx.strokeStyle = color;  // This path is green
     x=150;
     y=150;
     ctx.moveTo(x, y);
@@ -43,15 +48,15 @@
     ctx.lineTo(x+=40, y);
     ctx.lineTo(x-=50, y-=50);
     
-    ctx.stroke();
+    ctx.fillStyle = color;
     ctx.fill();
-
-
+    ctx.stroke();
+    
     if (!emit) { return; }
 
 
     socket.emit('drawing', {
-      color: 'red'
+      color: color
     });
     
     console.log('it works');
@@ -59,34 +64,51 @@
   }
 
   setTimeout(function(){
-    drawLeaf('lightgreen');
+    drawLeaf('green');
    }, 600);
 
+  function drawLine(x0, y0, x1, y1, color, emit){
+  context.beginPath();
+  context.moveTo(x0, y0);
+  context.lineTo(x1, y1);
+  context.strokeStyle = color;
+  context.lineWidth = 2;
+  context.stroke();
+  context.closePath();
 
+  if (!emit) { return; }
+  var w = canvas.width;
+  var h = canvas.height;
 
-  window.addEventListener('resize', onResize, false);
-  onResize();
+  socket.emit('drawing', {
+    x0: x0 / w,
+    y0: y0 / h,
+    x1: x1 / w,
+    y1: y1 / h,
+    color: color
+  });
+}
 
-  canvas.addEventListener('mousedown', onMouseDown, false);
-  canvas.addEventListener('mouseup', onMouseUp, false);
-
-  canvas.addEventListener('touchstart', onMouseDown, false);
-  canvas.addEventListener('touchend', onMouseUp, false);
 
 
   function onMouseDown(e) {
     drawLeaf('red', true);
     drawing = true;
-    current.x = e.clientX||e.touches[0].clientX;
-    current.y = e.clientY||e.touches[0].clientY;
+    //current.x = e.clientX||e.touches[0].clientX;
+    //current.y = e.clientY||e.touches[0].clientY;
 
   }
  
+
   function onMouseUp(e){
     drawLeaf("green", true);
     if (!drawing) { return; }
     drawing = false; 
     // drawLine(current.x, current.y, e.clientX||e.touches[0].clientX, e.clientY||e.touches[0].clientY, current.color, true);
+  }
+
+  function onColorUpdate(e){
+    current.color = e.target.className.split(' ') [1];
   }
 
   // limit the number of events per second
@@ -103,11 +125,10 @@
   }
 
 
-
   function onDrawingEvent(data){
-    drawLeaf(data.color);
     var w = canvas.width;
     var h = canvas.height;
+    drawLeaf(data.color);
     //drawLine(data.x0 * w, data.y0 * h, data.x1 * w, data.y1 * h, data.color);
   }
 
