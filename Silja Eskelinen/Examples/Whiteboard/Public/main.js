@@ -18,6 +18,7 @@
   canvas.addEventListener('mouseout', onMouseUp, false);
   canvas.addEventListener('mousemove', throttle(onMouseMove, 10), false);
 
+  //Change the color of the brush by clicking the color
   for (var i = 0; i < colors.length; i++){
     colors[i].addEventListener('click', onColorUpdate, false);
   }
@@ -27,7 +28,7 @@
   window.addEventListener('resize', onResize, false);
   onResize();
 
-
+  //Locate mouse, if it's on the canvas draw line and emit to all sockets
   function drawLine(x0, y0, x1, y1, color, emit){
     context.beginPath();
     context.moveTo(x0, y0);
@@ -49,7 +50,8 @@
       color: color
     });
   }
-
+  
+  //Mouse event functions 
   function onMouseDown(e){
     drawing = true;
     current.x = e.clientX||e.touches[0].clientX;
@@ -85,7 +87,8 @@
       }
     };
   }
-
+  
+  //Draw the line when mouse is pressed inside canvas
   function onDrawingEvent(data){
     var w = canvas.width;
     var h = canvas.height;
@@ -104,6 +107,7 @@
 var audios = new Array(document.getElementById("audio0"), document.getElementById("audio1"), document.getElementById("audio2"), document.getElementById("audio3"));
 var audio 
 
+
 //Function to select and play random audio from the Array
 function playAudio() {
 var randomInt = Math.floor(Math.random() * Math.floor(4));
@@ -115,6 +119,4 @@ audio.play();
 function pauseAudio() { 
 audio.pause(); 
 } 
-
-
 
