@@ -8,16 +8,21 @@
   <body>
     <h1>Socket.io Demo</h1>
     <p id="buttonCount">The button has 1000 clicks left.</p>
+    
+    <!--creates a button-->
     <button onclick="buttonClicked()">Click me</button>
+    
+    <!--intergrates socket.io-->
     <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io.connect();
 
+      //lets the server know that the button has been clicked
       function buttonClicked() {
         socket.emit("clicked");
       }
 
-      //when a button update is received it will be shown on the canvas
+      //when a button update is received it will be shown on all the browsers canvas 
       socket.on("buttonUpdate", function (data) {
         document.getElementById("buttonCount").innerHTML =
           "The button has " + data + " clicks left.";
