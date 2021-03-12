@@ -24,15 +24,15 @@
     </form>
   </div>
   
-    <!integrate socket.io>
+    <!--integrate socket.io-->
     <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io();
       var messages = document.getElementById('messages');
       var form = document.getElementById('form');
       var input = document.getElementById('input');
-      var alert = new Audio("https://gofile.io/d/AF0CQT");
-
+      var alert = new Audio("https://srv-store2.gofile.io/download/AF0CQT/chat_alart.mp3");
+    
 
     //the sever receives whatever a user types as a chat message
       form.addEventListener('submit', function(e) {

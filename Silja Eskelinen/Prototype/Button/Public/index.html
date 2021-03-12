@@ -15,28 +15,16 @@
     <script>
       const socket = io.connect("http://localhost:5000");
 
-      const changeColor = document.getElementById("changeColor");
-
-      changeColor.addEventListener("click", function () {
-        socket.emit("changeColor", socket.id);
+      Pressure.set("#changeColor",{
+        change: function(force){
+          socket.emit("changeColor",force);
+        }
       });
 
-      socket.on("changeColor", function (data) {
-        console.log("hello");
-
+      socket.on("changeColor", function(force){
         let el = document.getElementById("changeColor");
-
         let scale = chroma.scale(["yellow", "pink", "purple"]);
-
-
-        Pressure.set("#changeColor", {
-          change: function (force) {
-            el.style.backgroundColor = scale(force);
-            el.innerHTML = force;
-
-            console.log("hih");
-          },
-        });
+        el.style.backgroundColor = scale(force);
       });
     </script>
   </body>

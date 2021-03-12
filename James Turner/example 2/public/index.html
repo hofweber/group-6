@@ -6,11 +6,11 @@
 		<link rel="stylesheet" href="styles.css">
    </head>
    <body>
-		 <h1>Pick a button and race to 100 clicks!</h1>	 
-		 <p id="buttonCount1">Button 1 has been clicked 0 times.</p>
-         <p id="buttonCount2">Button 2 has been clicked 0 times.</p>
-		 <button onclick="buttonClicked1()">Button 1</button>
-         <button onclick="buttonClicked2()">Button 2</button>
+		 <h1>One button adds and the other subtracts</h1>	 
+		 <p id="buttonCount">The counter is at 0.</p>
+        
+		 <button onclick="buttonClicked1()">Click to add</button>
+         <button onclick="buttonClicked2()">Click to subtract</button>
 		 <script src="/socket.io/socket.io.js"></script>
 		 <script>
 			 var socket = io.connect();
@@ -23,15 +23,11 @@
 			   socket.emit('clicked2');
 			 }
 			 
-			 //when we receive buttonUpdate, do this
-			 socket.on('buttonUpdate1', function(data){
-				 document.getElementById("buttonCount1").innerHTML = 'Button 1 has been clicked ' + data + ' times.';
+			 //when we receive buttonUpdate1, do this
+			 socket.on('buttonUpdate', function(data){
+				 document.getElementById("buttonCount").innerHTML = 'The counter is at ' + data + ' .';
 			 });
 
-              //when we receive buttonUpdate, do this
-			 socket.on('buttonUpdate2', function(data){
-				 document.getElementById("buttonCount2").innerHTML = 'Button 2 has been clicked ' + data + ' times.';
-			 });
 		</script>
    </body>
 </html>
