@@ -27,6 +27,10 @@ io.on("connection", (socket) => {
   socket.on("chat message", (msg) => {
     console.log("message: " + msg);
   });
+  //listening for button click and letting other clients now when the button has been clicked
+  socket.on("music", function (data) {
+    io.emit("music", data);
+  });
 });
 
 //sends a message to all the connected clients
