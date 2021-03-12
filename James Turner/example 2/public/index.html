@@ -9,23 +9,26 @@
 		 <h1>One button adds and the other subtracts</h1>	 
 		 <p id="buttonCount">The counter is at 0.</p>
         
-		 <button onclick="buttonClicked1()">Click to add</button>
-         <button onclick="buttonClicked2()">Click to subtract</button>
-		 <script src="/socket.io/socket.io.js"></script>
+<!--adds the buttons-->
+		<button onclick="buttonClicked1()">Click to add</button>
+         	<button onclick="buttonClicked2()">Click to subtract</button>
+<!--adds socket.io-->
+		<script src="/socket.io/socket.io.js"></script>
 		 <script>
 			 var socket = io.connect();
-			 
-			 function buttonClicked1(){
+
+//sends information to the server when the buttons are clicked
+			function buttonClicked1(){
 			   socket.emit('clicked1');
 			 }
 
-             function buttonClicked2(){
+             		function buttonClicked2(){
 			   socket.emit('clicked2');
 			 }
 			 
-			 //when we receive buttonUpdate1, do this
-			 socket.on('buttonUpdate', function(data){
-				 document.getElementById("buttonCount").innerHTML = 'The counter is at ' + data + ' .';
+//when we receive buttonUpdate from the server, change the counter on the webpage
+			socket.on('buttonUpdate', function(data){
+				document.getElementById("buttonCount").innerHTML = 'The counter is at ' + data + ' .';
 			 });
 
 		</script>
