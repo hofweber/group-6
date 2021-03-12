@@ -3,27 +3,27 @@
   <head>
     <title>Socket.io Demo</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <!--creates button-->
     <button id="first">Play</button>
+    <!--intergrates socket.io and howler.js-->
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js"></script>
 
     <script>
+      //set up variables
       var socket = io.connect("http://localhost:3000");
+      var long = document.getElementById("first");
 
-      //fetches the mp3
+      //connects the mp3 file to a variable
       var audio = new Howl({
         src: [
           "https://cdn.glitch.com/533fdac0-87b6-41a5-9342-0ee5913c6263%2FStereo-Rain-And-Wind-A-www.fesliyanstudios.com-%5BAudioTrimmer.com%5D.mp3?v=1615498112923",
         ],
       });
 
-      //creates an addEventListener
-      var long = document.getElementById("first");
-
-      //listening for a button click
+      //tells the server when the button has been clicked
       long.addEventListener("click", function () {
         socket.emit("first", socket.id);
       });
