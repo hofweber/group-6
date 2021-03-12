@@ -1,7 +1,6 @@
 // part of setting up the server
 const app = require("express")();
 const http = require("http").Server(app);
-//makes the socket.io package available via the io variable
 const io = require("socket.io")(http);
 
 //redirect / to our index.html file
@@ -17,12 +16,12 @@ io.on("connection", (socket) => {
   });
 });
 
-//makes web server and socket.io server start listening to port 3000
+//start listening to port 3000
 http.listen(3000, () => {
   console.log("listening on *:3000");
 });
 
-//prints out the chat message event
+//listening for messages from the client
 io.on("connection", (socket) => {
   socket.on("chat message", (msg) => {
     console.log("message: " + msg);
