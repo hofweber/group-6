@@ -5,12 +5,12 @@ var app = express();
 var server = app.listen(3000, function () {
   console.log("Listening to requests on port 3000");
 });
-
 var io = socket(server);
 
+//express looks for the files relative to the static directory
 app.use(express.static("public"));
 
-//when client connects to the browser it will send a message in the terminal
+//listens for events on the client side
 io.on("connection", function (socket) {
   console.log("New transmitter", socket.id);
 
