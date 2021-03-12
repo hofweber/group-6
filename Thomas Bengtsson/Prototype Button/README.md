@@ -6,4 +6,4 @@ Dependencies: Install Node.js, Socket.io, Express.js
 
 Contributor: Thomas Bengtsson
 
-Source: https://github.com/aerrity/socket-click-example
+Source: this example is based of https://github.com/aerrity/socket-click-example
