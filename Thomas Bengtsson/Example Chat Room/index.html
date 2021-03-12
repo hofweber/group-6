@@ -21,7 +21,7 @@
     <form id='form' action=''>
       <input id="input" autocomplete='off' /><button>Send</button>
     </form>
-   
+    <button id = 'music'>Music</button>
 
     <script src='/socket.io/socket.io.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js'></script>
@@ -31,6 +31,13 @@
         var messages = document.getElementById('messages');
         var form = document.getElementById('form');
         var input = document.getElementById('input');
+        var music = document.getElementById('music')
+
+        var audio = new Howl({
+        src: [
+          'https://cdn.glitch.com/533fdac0-87b6-41a5-9342-0ee5913c6263%2F10%20minutes.%20The%20Little%20Power%20Nap%20Series.%20Sleep%20and%20Relaxation%20Music%203-%5BAudioTrimmer.com%5D.mp3?v=1615544046562',
+        ],
+      });
     
 //when user sends message the server receives it as a chat message event
         form.addEventListener('submit', function(e) {
@@ -51,8 +58,11 @@
           window.scrollTo(0, document.body.scrollHeight);
     
         });
-
+ 
+      music.addEventListener('click', function(){
+        audio.play()
       });
+      
       </script>
   </body>
 </html>
