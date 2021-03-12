@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Socket Chat Jamie</title>
+    <!--set up the chat page-->
     <style>
       body { margin: 0; padding-bottom: 3rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 
@@ -27,14 +28,17 @@
     <!--integrate socket.io-->
     <script src="/socket.io/socket.io.js"></script>
     <script>
+      //set up variables
       var socket = io();
       var messages = document.getElementById('messages');
       var form = document.getElementById('form');
       var input = document.getElementById('input');
+      //source for the alert sound
       var alert = new Audio("https://srv-store2.gofile.io/download/AF0CQT/chat_alart.mp3");
     
 
     //the sever receives whatever a user types as a chat message
+      //adds a listener to the message submit button
       form.addEventListener('submit', function(e) {
         e.preventDefault();
         if (input.value) {
@@ -48,6 +52,7 @@
         item.textContent = msg;
         messages.appendChild(item);
         window.scrollTo(0, document.body.scrollHeight);
+      //plays an alert sound when a message is sent
         alert.play();
       });
     </script>

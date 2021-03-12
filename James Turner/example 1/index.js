@@ -1,3 +1,4 @@
+//set up dependencies
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
@@ -7,10 +8,11 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-
+//start listening for messages from the client
 io.on('connection', (socket) => {
+//receive messages
   socket.on('chat message', (msg) => {
-    //sends chat mesages to all users
+ //sends chat mesages to all users
    io.emit('chat message', msg);
   });
 });
