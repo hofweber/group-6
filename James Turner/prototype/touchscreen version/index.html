@@ -6,7 +6,9 @@
 </head>
 
 <body>
+<!--add socket-->
     <script src="/socket.io/socket.io.js"></script>
+<!--add the button-->
     <div id="button">
         <button style="background-color: red; height: 500px; width: 500px;" type="button">
             Hold Down
@@ -14,14 +16,20 @@
     </div>
     <script>
         var socket = io();
+        
+//add a touch event listener to the button
         document.getElementById("button").ontouchstart = function (event) {
-            //fires when touched
+//fires when touched
             console.log("button held down");
+//sends info to the server when the button is held down
             socket.emit('buttonDown');
         }
+        
+//add a touch even listener to the button
         document.getElementById("button").ontouchend = function (event) {
-            //fires when released
+//fires when released
             console.log("button not held down anymore");
+//sends info to the server when the button is released
             socket.emit("buttonUp");
         }
 
